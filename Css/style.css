@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.btn-start {
+    display: block;
+    margin: auto;
+    margin-top: 2%;
+    padding: 15px 30px;
+    font-size: 2rem;
+    border-radius: 50px;
+    color: #fff;
+    background-color: #f39c12;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-shadow: 0 0 5px #fff;
+}
+.btn-start:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #f39c12;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 50px;
+    color: white;
+}
+
+.custom-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+    margin-top: 2%;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.custom-title::before,
+.custom-title::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 4px;
+    background-color: #f39c12;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.2s ease-in-out;
+}
+
+.custom-title::before {
+    left: -160px;
+}
+
+.custom-title::after {
+    right: -160px;
+}
+
+.title-highlighted {
+    background-color: rgba(0, 0, 0, 0.8); border-radius: 10px;
+}
+
+.text-black {
+    color: #000000;
+}
+
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;           /* Utilise 100% de la largeur de la fenêtre */
+    height: 100vh;          /* Utilise 100% de la hauteur de la fenêtre */
+    z-index: -1;            /* Place l'image en arrière-plan */
+    background: url('../images/Fond2.png') no-repeat center center;
+    background-size: cover; /* Couvre toute la fenêtre */
+    overflow: hidden;       /* Empêche tout débordement */
+}
+
+.btn-back {
+    position: fixed;
+    top : 10px;
+    left : 10px;
+    z-index:100;
+}
+
+.arrow_back {
+    width: 5vw;
+    height: 7vh;
+    cursor: pointer;
+}
+
+.arrow_back:hover {
+    transform: scale(1.2); /* Effet d'agrandissement au survol */
+}
