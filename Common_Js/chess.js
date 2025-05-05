@@ -118,19 +118,48 @@ function isLegalMove(type, isWhite, from, to) {
     const dx = to.charCodeAt(0) - from.charCodeAt(0); // colonne (a-h)
     const dy = parseInt(to[1]) - parseInt(from[1]);    // ligne (1-8)
 
+    const fromX = from.charCodeAt(0);
+    const fromY = parseInt(from[1]);
+    const toX = to.charCodeAt(0);
+    const toY = parseInt(to[1]);
+
+    function isPathClear() {
+        const stepX = Math.sign(toX - fromX);
+        const stepY = Math.sign(toY - fromY);
+        let x = fromX + stepX;
+        let y = fromY + stepY;
+    
+        while (x !== toX || y !== toY) {
+            const intermediate = String.fromCharCode(x) + y;
+            if (!isCaseEmpty(intermediate)) return false;
+            x += stepX;
+            y += stepY;
+        }
+        return true;
+    }
+
     switch (type) {
         case 'r': // rook
-            return dx === 0 || dy === 0;
+            if (dx === 0 || dy === 0) {
+                return isPathClear();
+            }
+            return false;
 
         case 'n': // knight
             return (Math.abs(dx) === 2 && Math.abs(dy) === 1) ||
                 (Math.abs(dx) === 1 && Math.abs(dy) === 2);
 
         case 'b': // bishop
-            return Math.abs(dx) === Math.abs(dy);
+            if (Math.abs(dx) === Math.abs(dy)) {
+                return isPathClear();
+            }
+            return false;
 
         case 'q': // queen
-            return dx === 0 || dy === 0 || Math.abs(dx) === Math.abs(dy);
+            if (dx === 0 || dy === 0 || Math.abs(dx) === Math.abs(dy)) {
+                return isPathClear();
+            }
+            return false;
 
         case 'k': // king
             return Math.abs(dx) <= 1 && Math.abs(dy) <= 1;
