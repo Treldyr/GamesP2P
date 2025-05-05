@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Échecs normaux</title>
+    <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href="../Css/styleChess.css">
+    <link rel="icon" href="../images/wq.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+    <div class="background-image"></div>
+    <div id="peerConnexionJoin" class="content">
+        <h1 class="custom-title">Rejoins la partie d'un joueur hôte</h1>
+
+        <h3>Colle ici l'offre de l'hôte :</h3>
+        <textarea id="signal" placeholder="Colle ici l'offre" rows="10" cols="80"></textarea><br>
+        <button onclick="handleSignal()">Traiter</button>
+        <br><br><br>
+        <h3>À envoyer à l'hôte (copie ce texte) :</h3>
+        <textarea id="output" readonly rows="10" cols="80"></textarea>
+        <br>
+        <button onclick="copyToClipboard()">Copier dans le presse-papiers</button>
+    </div>
+    <div id="chess_content" style="visibility: hidden;">
+        <div id="board">
+            <!-- Génération des 64 cases -->
+            <script>
+                const colors = ["yellow", "green"];
+                let colorIndex = 0; // Commencer par "yellow"
+            
+                for (let row = 8; row >= 1; row--) {
+                    for (let col = 0; col < 8; col++) {
+                        const file = String.fromCharCode(97 + col); // "a", "b", "c", ...
+                        const rank = row; // 8, 7, 6, ...
+                
+                        // Calculer la classe de position pour chaque case
+                        const caseId = `${file}${rank}`;
+                        
+                        // Alternance des couleurs (jaune et vert)
+                        const color = colors[colorIndex % 2];
+                
+                        // Générer l'élément pour chaque case
+                        document.write(`
+                        <img id="c${caseId}" src="../images/${color}.png" class="piece ${caseId}" onclick="FirstTryMove('${caseId}')">
+                        `);
+                
+                        // Alterner la couleur pour la prochaine case
+                        colorIndex++;
+                    }
+                    colorIndex++;
+                }
+            </script>
+        </div>
+        
+        <!-- Pièces noires (rangées 8 et 7) -->
+        <img id="br1" src="../images/br.png" class="piece_black a8" onclick="handleClickSecretQueen('br1')">
+        <img id="bn1" src="../images/bn.png" class="piece_black b8" onclick="handleClickSecretQueen('bn1')">
+        <img id="bb1" src="../images/bb.png" class="piece_black c8" onclick="handleClickSecretQueen('bb1')">
+        <img id="bq"  src="../images/bq.png" class="piece_black d8" onclick="handleClickSecretQueen('bq')">
+        <img id="bk"  src="../images/bk.png" class="piece_black e8" onclick="handleClickSecretQueen('bk')">
+        <img id="bb2" src="../images/bb.png" class="piece_black f8" onclick="handleClickSecretQueen('bb2')">
+        <img id="bn2" src="../images/bn.png" class="piece_black g8" onclick="handleClickSecretQueen('bn2')">
+        <img id="br2" src="../images/br.png" class="piece_black h8" onclick="handleClickSecretQueen('br2')">
+        
+        <img id="bp1" src="../images/bp.png" class="piece_black a7" onclick="handleClickSecretQueen('bp1')">
+        <img id="bp2" src="../images/bp.png" class="piece_black b7" onclick="handleClickSecretQueen('bp2')">
+        <img id="bp3" src="../images/bp.png" class="piece_black c7" onclick="handleClickSecretQueen('bp3')">
+        <img id="bp4" src="../images/bp.png" class="piece_black d7" onclick="handleClickSecretQueen('bp4')">
+        <img id="bp5" src="../images/bp.png" class="piece_black e7" onclick="handleClickSecretQueen('bp5')">
+        <img id="bp6" src="../images/bp.png" class="piece_black f7" onclick="handleClickSecretQueen('bp6')">
+        <img id="bp7" src="../images/bp.png" class="piece_black g7" onclick="handleClickSecretQueen('bp7')">
+        <img id="bp8" src="../images/bp.png" class="piece_black h7" onclick="handleClickSecretQueen('bp8')">
+        
+        <!-- Pièces blanches (rangées 1 et 2) -->
+        <img id="wr1" src="../images/wr.png" class="piece_white a1" onclick="FirstTryMove(this.classList[1])">
+        <img id="wn1" src="../images/wn.png" class="piece_white b1" onclick="FirstTryMove(this.classList[1])">
+        <img id="wb1" src="../images/wb.png" class="piece_white c1" onclick="FirstTryMove(this.classList[1])">
+        <img id="wq"  src="../images/wq.png" class="piece_white d1" onclick="FirstTryMove(this.classList[1])">
+        <img id="wk"  src="../images/wk.png" class="piece_white e1" onclick="FirstTryMove(this.classList[1])">
+        <img id="wb2" src="../images/wb.png" class="piece_white f1" onclick="FirstTryMove(this.classList[1])">
+        <img id="wn2" src="../images/wn.png" class="piece_white g1" onclick="FirstTryMove(this.classList[1])">
+        <img id="wr2" src="../images/wr.png" class="piece_white h1" onclick="FirstTryMove(this.classList[1])">
+        
+        <img id="wp1" src="../images/wp.png" class="piece_white a2" onclick="FirstTryMove(this.classList[1])">
+        <img id="wp2" src="../images/wp.png" class="piece_white b2" onclick="FirstTryMove(this.classList[1])">
+        <img id="wp3" src="../images/wp.png" class="piece_white c2" onclick="FirstTryMove(this.classList[1])">
+        <img id="wp4" src="../images/wp.png" class="piece_white d2" onclick="FirstTryMove(this.classList[1])">
+        <img id="wp5" src="../images/wp.png" class="piece_white e2" onclick="FirstTryMove(this.classList[1])">
+        <img id="wp6" src="../images/wp.png" class="piece_white f2" onclick="FirstTryMove(this.classList[1])">
+        <img id="wp7" src="../images/wp.png" class="piece_white g2" onclick="FirstTryMove(this.classList[1])">
+        <img id="wp8" src="../images/wp.png" class="piece_white h2" onclick="FirstTryMove(this.classList[1])">  
+    </div>
+    <div id="secretQueenSelector" class="victory-message" style="visibility: hidden;">
+        <button class="btn-start" onclick="chooseAsSecretQueen()">Convertir en dame</button>
+    </div>
+    <script src="../P2PManagement/join.js"></script>
+    <script src="../Common_Js/chess.js"></script>
+    <script src="rules_black.js"></script>
+</body>
+</html>
