@@ -30,7 +30,17 @@ let peer = new RTCPeerConnection({
 
   function handleSignal() {
     const signal = JSON.parse(document.getElementById("signal").value);
-    peer.setRemoteDescription(signal);
+  
+    // On vérifie que c'est bien une ANSWER (puisqu'on est l'hôte)
+    if (signal.type === "answer") {
+      if (peer.signalingState !== "stable") {
+        peer.setRemoteDescription(signal).catch(console.error);
+      } else {
+        console.warn("Déjà dans l'état stable, refus de définir une nouvelle remote description.");
+      }
+    } else {
+      console.warn("Ce peer (hôte) n'attend qu'une 'answer', pas :", signal.type);
+    }
   }
 
   function sendMessage(msg) {

@@ -12,8 +12,6 @@ let peer = new RTCPeerConnection({
     };
     dataChannel.onmessage = e => {
       treatNewMessage(e.data)
-      //console.log("Message reçu :", e.data);
-      //alert("Message reçu : " + e.data);
     };
   };
 
@@ -23,14 +21,25 @@ let peer = new RTCPeerConnection({
     }
   };
 
-  function handleSignal() {
-    const signal = JSON.parse(document.getElementById("signal").value);
+function handleSignal() {
+  const signal = JSON.parse(document.getElementById("signal").value);
+
+  // Vérifie que c'est bien une offer, car ce client est l'invité
+  if (signal.type === "offer") {
+    if (peer.signalingState === "stable") {
+      console.warn("Impossible de définir une offre en état 'stable'. Le peer est probablement déjà connecté.");
+      return;
+    }
+
     peer.setRemoteDescription(signal).then(() => {
       return peer.createAnswer();
     }).then(answer => {
       return peer.setLocalDescription(answer);
     }).catch(console.error);
+  } else {
+    console.warn("Ce peer (invité) attend une 'offer', pas :", signal.type);
   }
+}
 
   function sendMessage(msg) {
     if (dataChannel && dataChannel.readyState === "open") {
