@@ -16,12 +16,17 @@ let peer = new RTCPeerConnection({
   };
 
   peer.onicecandidate = e => {
-    if (!e.candidate) {
+    if (peer.iceGatheringState === "complete" || !e.candidate) {
       document.getElementById("output").value = JSON.stringify(peer.localDescription);
     }
   };
 
-  peer.createOffer().then(desc => peer.setLocalDescription(desc));
+  peer.createOffer().then(desc => {
+    return peer.setLocalDescription(desc);
+  }).then(() => {
+    // On attend que le SDP soit prêt (sinon output est vide)
+    // ICE gathering peut prendre un peu de temps.
+  }).catch(console.error);
 
   function handleSignal() {
     const signal = JSON.parse(document.getElementById("signal").value);

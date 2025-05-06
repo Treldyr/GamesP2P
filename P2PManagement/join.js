@@ -18,7 +18,7 @@ let peer = new RTCPeerConnection({
   };
 
   peer.onicecandidate = e => {
-    if (!e.candidate) {
+    if (peer.iceGatheringState === "complete" || !e.candidate) {
       document.getElementById("output").value = JSON.stringify(peer.localDescription);
     }
   };
@@ -26,8 +26,10 @@ let peer = new RTCPeerConnection({
   function handleSignal() {
     const signal = JSON.parse(document.getElementById("signal").value);
     peer.setRemoteDescription(signal).then(() => {
-      peer.createAnswer().then(desc => peer.setLocalDescription(desc));
-    });
+      return peer.createAnswer();
+    }).then(answer => {
+      return peer.setLocalDescription(answer);
+    }).catch(console.error);
   }
 
   function sendMessage(msg) {
