@@ -13,6 +13,11 @@ function handleClick(piece_id) {
     selectedPiece = piece_id;
 }
 
+function playSound(soundName) {
+    var audio = new Audio('../Sounds/'+soundName+".mp3");
+    audio.play();
+}
+
 
 
 
@@ -24,6 +29,9 @@ function blackPieceMoveTo(pieceId, case_id){
     let element = document.getElementById(pieceId)
     element.className = ''
     element.classList.add('piece_black', case_id);
+
+    // joue le son du déplacement
+    playSound("move")
 
     // donne le tour aux blancs
     white_turn = true;
@@ -37,6 +45,9 @@ function whitePieceMoveTo(pieceId, case_id){
     let element = document.getElementById(pieceId)
     element.className = ''
     element.classList.add('piece_white', case_id);
+
+    // joue le son du déplacement
+    playSound("move")
 
     // donne le tour aux noirs
     white_turn = false;
@@ -63,6 +74,7 @@ function removeWhitePieceOnCase(case_id) {
     pieces.forEach(piece => {
         if (piece.classList[1] === case_id) {
             piece.remove(); // Supprime l'élément du DOM
+            playSound("take")
             if(piece.id=="wk"){
                 showVictoryMessage("noirs")
             }
@@ -88,11 +100,16 @@ function endTurn(case_id){
 function showVictoryMessage(winner) {
     const msg = document.createElement('div');
     msg.innerText = `Victoire des ${winner} !`;
-    msg.className = 'victory-message';
+    msg.className = 'secret-box';
     document.body.appendChild(msg);
+    playSound("checkmate")
 }
 
 
+function promote(piece) {
+    console.log("Promotion choisie :", piece);
+    document.getElementById("promotion").style.visibility = "hidden";
+  }
 
 
 

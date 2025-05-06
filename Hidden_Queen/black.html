@@ -93,8 +93,14 @@
         <img id="wp7" src="../images/wp.png" class="piece_white g2" onclick="FirstTryMove(this.classList[1])">
         <img id="wp8" src="../images/wp.png" class="piece_white h2" onclick="FirstTryMove(this.classList[1])">  
     </div>
-    <div id="secretQueenSelector" class="victory-message" style="visibility: hidden;">
+    <div id="secretQueenSelector" class="secret-box" style="visibility: hidden;">
         <button class="btn-start" onclick="chooseAsSecretQueen()">Convertir en dame</button>
+    </div>
+    <div id="promotion" class="secret-box" style="visibility: hidden;">
+        <button onclick="promote('q')">♕ Reine</button>
+        <button onclick="promote('r')">♖ Tour</button>
+        <button onclick="promote('b')">♗ Fou</button>
+        <button onclick="promote('n')">♘ Cavalier</button>
     </div>
     <script src="../P2PManagement/join.js"></script>
     <script src="../Common_Js/chess.js"></script>

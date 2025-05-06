@@ -47,4 +47,6 @@ let peer = new RTCPeerConnection({
   function goChessBoard(){
     document.getElementById('peerConnexionJoin').style.visibility = "hidden"
     document.getElementById('chess_content').style.visibility = "visible"
+    var audio = new Audio('../Sounds/intro.mp3');
+    audio.play();
   }

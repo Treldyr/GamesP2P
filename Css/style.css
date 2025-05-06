@@ -10,17 +10,17 @@ body {
     padding: 15px 30px;
     font-size: 2rem;
     border-radius: 50px;
-    color: #fff;
-    background-color: #f39c12;
+    color: #ffffff;
+    background-color: #1a7c21;
     border: none;
     outline: none;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-    text-shadow: 0 0 5px #fff;
+    text-shadow: 0 0 5px #000000;
 }
 .btn-start:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 10px #f39c12;
+    box-shadow: 0 0 10px #1a7c21;
 }
 
 .content {
@@ -28,14 +28,14 @@ body {
     z-index: 1;
     text-align: center;
     padding: 50px;
-    color: white;
+    color: #ffffff;
 }
 
 .custom-title {
     text-align: center;
     font-size: 2.5rem;
-    color: #fff;
-    text-shadow: 0 0 5px #fff;
+    color: #ffffff;
+    text-shadow: 0 0 5px #000000;
     margin-top: 2%;
     margin-bottom: 20px;
     position: relative;
@@ -48,7 +48,7 @@ body {
     position: absolute;
     width: 150px;
     height: 4px;
-    background-color: #f39c12;
+    background-color: #1a7c21;
     top: 50%;
     transform: translateY(-50%);
     transition: all 0.2s ease-in-out;
@@ -77,7 +77,7 @@ body {
     width: 100vw;           /* Utilise 100% de la largeur de la fenêtre */
     height: 100vh;          /* Utilise 100% de la hauteur de la fenêtre */
     z-index: -1;            /* Place l'image en arrière-plan */
-    background: url('../images/Fond2.png') no-repeat center center;
+    background: url('../images/background.png') no-repeat center center;
     background-size: cover; /* Couvre toute la fenêtre */
     overflow: hidden;       /* Empêche tout débordement */
 }

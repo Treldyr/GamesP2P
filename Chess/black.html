@@ -93,6 +93,12 @@
         <img id="wp7" src="../images/wp.png" class="piece_white g2" onclick="tryMoveTo(this.classList[1])">
         <img id="wp8" src="../images/wp.png" class="piece_white h2" onclick="tryMoveTo(this.classList[1])">  
     </div>
+    <div id="promotion" class="secret-box" style="visibility: hidden;">
+        <button onclick="promote('q')">♕ Reine</button>
+        <button onclick="promote('r')">♖ Tour</button>
+        <button onclick="promote('b')">♗ Fou</button>
+        <button onclick="promote('n')">♘ Cavalier</button>
+    </div>
     <script src="../P2PManagement/join.js"></script>
     <script src="../Common_Js/chess.js"></script>
     <script src="rules_black.js"></script>
