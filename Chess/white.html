@@ -75,29 +75,29 @@
         <img id="bp8" src="../images/bp.png" class="piece_black h7" onclick="tryMoveTo(this.classList[1])">
         
         <!-- Pièces blanches (rangées 1 et 2) -->
-        <img id="wr1" src="../images/wr.png" class="piece_white a1" onclick="handleClick('wr1')">
-        <img id="wn1" src="../images/wn.png" class="piece_white b1" onclick="handleClick('wn1')">
-        <img id="wb1" src="../images/wb.png" class="piece_white c1" onclick="handleClick('wb1')">
-        <img id="wq"  src="../images/wq.png" class="piece_white d1" onclick="handleClick('wq')">
-        <img id="wk"  src="../images/wk.png" class="piece_white e1" onclick="handleClick('wk')">
-        <img id="wb2" src="../images/wb.png" class="piece_white f1" onclick="handleClick('wb2')">
-        <img id="wn2" src="../images/wn.png" class="piece_white g1" onclick="handleClick('wn2')">
-        <img id="wr2" src="../images/wr.png" class="piece_white h1" onclick="handleClick('wr2')">
+        <img id="wr1" src="../images/wr.png" class="piece_white a1" onclick="handleClick(this.id)">
+        <img id="wn1" src="../images/wn.png" class="piece_white b1" onclick="handleClick(this.id)">
+        <img id="wb1" src="../images/wb.png" class="piece_white c1" onclick="handleClick(this.id)">
+        <img id="wq"  src="../images/wq.png" class="piece_white d1" onclick="handleClick(this.id)">
+        <img id="wk"  src="../images/wk.png" class="piece_white e1" onclick="handleClick(this.id)">
+        <img id="wb2" src="../images/wb.png" class="piece_white f1" onclick="handleClick(this.id)">
+        <img id="wn2" src="../images/wn.png" class="piece_white g1" onclick="handleClick(this.id)">
+        <img id="wr2" src="../images/wr.png" class="piece_white h1" onclick="handleClick(this.id)">
         
-        <img id="wp1" src="../images/wp.png" class="piece_white a2" onclick="handleClick('wp1')">
-        <img id="wp2" src="../images/wp.png" class="piece_white b2" onclick="handleClick('wp2')">
-        <img id="wp3" src="../images/wp.png" class="piece_white c2" onclick="handleClick('wp3')">
-        <img id="wp4" src="../images/wp.png" class="piece_white d2" onclick="handleClick('wp4')">
-        <img id="wp5" src="../images/wp.png" class="piece_white e2" onclick="handleClick('wp5')">
-        <img id="wp6" src="../images/wp.png" class="piece_white f2" onclick="handleClick('wp6')">
-        <img id="wp7" src="../images/wp.png" class="piece_white g2" onclick="handleClick('wp7')">
-        <img id="wp8" src="../images/wp.png" class="piece_white h2" onclick="handleClick('wp8')">
+        <img id="wp1" src="../images/wp.png" class="piece_white a2" onclick="handleClick(this.id)">
+        <img id="wp2" src="../images/wp.png" class="piece_white b2" onclick="handleClick(this.id)">
+        <img id="wp3" src="../images/wp.png" class="piece_white c2" onclick="handleClick(this.id)">
+        <img id="wp4" src="../images/wp.png" class="piece_white d2" onclick="handleClick(this.id)">
+        <img id="wp5" src="../images/wp.png" class="piece_white e2" onclick="handleClick(this.id)">
+        <img id="wp6" src="../images/wp.png" class="piece_white f2" onclick="handleClick(this.id)">
+        <img id="wp7" src="../images/wp.png" class="piece_white g2" onclick="handleClick(this.id)">
+        <img id="wp8" src="../images/wp.png" class="piece_white h2" onclick="handleClick(this.id)">
     </div>
     <div id="promotion" class="secret-box" style="visibility: hidden;">
-        <button onclick="promote('q')">♕ Reine</button>
-        <button onclick="promote('r')">♖ Tour</button>
-        <button onclick="promote('b')">♗ Fou</button>
-        <button onclick="promote('n')">♘ Cavalier</button>
+        <button onclick="promote('w','q')">♕ Reine</button>
+        <button onclick="promote('w','r')">♖ Tour</button>
+        <button onclick="promote('w','b')">♗ Fou</button>
+        <button onclick="promote('w','n')">♘ Cavalier</button>
     </div>
     <script src="../P2PManagement/host.js"></script>
     <script src="../Common_Js/chess.js"></script>

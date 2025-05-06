@@ -19,10 +19,30 @@ function tryMoveTo(case_id){
 
 function treatNewMessage(msg){
     let typeMsg = msg.split('-')[0]
+    let pieceId = msg.split('-')[1]
+    let caseId = msg.split('-')[2]
     if(typeMsg=="move"){
-        let pieceId = msg.split('-')[1]
-        let caseId = msg.split('-')[2]
         blackPieceMoveTo(pieceId,caseId)
     }
+    if(typeMsg=="promote"){
+        let newId = msg.split('-')[3]
+        blackPieceMoveTo(pieceId,caseId)
+        updateIdPiece(pieceId, newId[0], newId[1])
+        selectedPiece = null
+    }
     console.log(msg)
+}
+
+function promote(color, piece) {
+    // update l'id du pion
+    let oldId = selectedPiece
+    let newId = updateIdPiece(oldId, color, piece)
+    selectedPiece = newId
+
+    // bouge le pion
+    whitePieceMoveTo(newId, selectedPromotionCase);
+
+    // envoie le message à l'autre joueur
+    msgToSend = "promote-"+oldId+"-"+selectedPromotionCase+"-"+newId
+    sendMessage(msgToSend)
 }

@@ -1,7 +1,10 @@
 var selectedPiece = null;
+var secret_queen = null;
 var white_turn = true;
 var white_wait = false;
 var black_wait = false;
+var id_new_piece = 9; // Si la prochaine nouvelle piece a l'ID 9, elle sera unique
+var selectedPromotionCase; // used only for promotion
 
 
 
@@ -90,7 +93,7 @@ function endTurn(case_id){
     msgToSend = "move-"+selectedPiece+"-"+case_id
     sendMessage(msgToSend)
 
-    // donne le tour aux blancs
+    // déselectionne la pièce
     selectedPiece = null
 }
 
@@ -106,10 +109,21 @@ function showVictoryMessage(winner) {
 }
 
 
-function promote(piece) {
-    console.log("Promotion choisie :", piece);
+function updateIdPiece(oldId, color, newpiece){
+    pawn = document.getElementById(oldId)
+    newId = color + newpiece + id_new_piece;
+    pawn.id = newId;
+    id_new_piece++;
+    pawn.src = "../images/" + color + newpiece + ".png"
     document.getElementById("promotion").style.visibility = "hidden";
-  }
+    return newId
+}
+
+
+function showPromotionMenu(to){
+    selectedPromotionCase = to;
+    document.getElementById("promotion").style.visibility = "visible";
+}
 
 
 
@@ -184,17 +198,25 @@ function isLegalMove(type, isWhite, from, to) {
         case 'p': {
             const direction = isWhite ? 1 : -1;
             const startRow = isWhite ? 2 : 7;
+            const promotionRow = isWhite ? 8 : 1;
+        
             const fromRow = parseInt(from[1]);
-
+            const toRow = parseInt(to[1]);
+        
             const targetIsEmpty = isCaseEmpty(to);
-            console.log(targetIsEmpty)
             const forwardOne = dx === 0 && dy === direction;
             const forwardTwo = dx === 0 && dy === 2 * direction && fromRow === startRow;
             const diagonalAttack = Math.abs(dx) === 1 && dy === direction;
-
+        
+            // Si on atteint la dernière rangée, afficher le menu de promotion et que le pion n'est pas la secret queen
+            if ((toRow === promotionRow)&&(selectedPiece != secret_queen)) {
+                showPromotionMenu(to);
+                return false;
+            }
+        
             // Avancer d'une case : doit être vide
             if (forwardOne && targetIsEmpty) return true;
-
+        
             // Avancer de deux cases : les deux doivent être vides
             if (forwardTwo) {
                 const intermediateY = fromRow + direction;

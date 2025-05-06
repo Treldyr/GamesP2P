@@ -56,23 +56,23 @@
         </div>
         
         <!-- Pièces noires (rangées 8 et 7) -->
-        <img id="br1" src="../images/br.png" class="piece_black a8" onclick="handleClickSecretQueen('br1')">
-        <img id="bn1" src="../images/bn.png" class="piece_black b8" onclick="handleClickSecretQueen('bn1')">
-        <img id="bb1" src="../images/bb.png" class="piece_black c8" onclick="handleClickSecretQueen('bb1')">
-        <img id="bq"  src="../images/bq.png" class="piece_black d8" onclick="handleClickSecretQueen('bq')">
-        <img id="bk"  src="../images/bk.png" class="piece_black e8" onclick="handleClickSecretQueen('bk')">
-        <img id="bb2" src="../images/bb.png" class="piece_black f8" onclick="handleClickSecretQueen('bb2')">
-        <img id="bn2" src="../images/bn.png" class="piece_black g8" onclick="handleClickSecretQueen('bn2')">
-        <img id="br2" src="../images/br.png" class="piece_black h8" onclick="handleClickSecretQueen('br2')">
+        <img id="br1" src="../images/br.png" class="piece_black a8" onclick="handleClickSecretQueen(this.id)">
+        <img id="bn1" src="../images/bn.png" class="piece_black b8" onclick="handleClickSecretQueen(this.id)">
+        <img id="bb1" src="../images/bb.png" class="piece_black c8" onclick="handleClickSecretQueen(this.id)">
+        <img id="bq"  src="../images/bq.png" class="piece_black d8" onclick="handleClickSecretQueen(this.id)">
+        <img id="bk"  src="../images/bk.png" class="piece_black e8" onclick="handleClickSecretQueen(this.id)">
+        <img id="bb2" src="../images/bb.png" class="piece_black f8" onclick="handleClickSecretQueen(this.id)">
+        <img id="bn2" src="../images/bn.png" class="piece_black g8" onclick="handleClickSecretQueen(this.id)">
+        <img id="br2" src="../images/br.png" class="piece_black h8" onclick="handleClickSecretQueen(this.id)">
         
-        <img id="bp1" src="../images/bp.png" class="piece_black a7" onclick="handleClickSecretQueen('bp1')">
-        <img id="bp2" src="../images/bp.png" class="piece_black b7" onclick="handleClickSecretQueen('bp2')">
-        <img id="bp3" src="../images/bp.png" class="piece_black c7" onclick="handleClickSecretQueen('bp3')">
-        <img id="bp4" src="../images/bp.png" class="piece_black d7" onclick="handleClickSecretQueen('bp4')">
-        <img id="bp5" src="../images/bp.png" class="piece_black e7" onclick="handleClickSecretQueen('bp5')">
-        <img id="bp6" src="../images/bp.png" class="piece_black f7" onclick="handleClickSecretQueen('bp6')">
-        <img id="bp7" src="../images/bp.png" class="piece_black g7" onclick="handleClickSecretQueen('bp7')">
-        <img id="bp8" src="../images/bp.png" class="piece_black h7" onclick="handleClickSecretQueen('bp8')">
+        <img id="bp1" src="../images/bp.png" class="piece_black a7" onclick="handleClickSecretQueen(this.id)">
+        <img id="bp2" src="../images/bp.png" class="piece_black b7" onclick="handleClickSecretQueen(this.id)">
+        <img id="bp3" src="../images/bp.png" class="piece_black c7" onclick="handleClickSecretQueen(this.id)">
+        <img id="bp4" src="../images/bp.png" class="piece_black d7" onclick="handleClickSecretQueen(this.id)">
+        <img id="bp5" src="../images/bp.png" class="piece_black e7" onclick="handleClickSecretQueen(this.id)">
+        <img id="bp6" src="../images/bp.png" class="piece_black f7" onclick="handleClickSecretQueen(this.id)">
+        <img id="bp7" src="../images/bp.png" class="piece_black g7" onclick="handleClickSecretQueen(this.id)">
+        <img id="bp8" src="../images/bp.png" class="piece_black h7" onclick="handleClickSecretQueen(this.id)">
         
         <!-- Pièces blanches (rangées 1 et 2) -->
         <img id="wr1" src="../images/wr.png" class="piece_white a1" onclick="FirstTryMove(this.classList[1])">
@@ -97,10 +97,10 @@
         <button class="btn-start" onclick="chooseAsSecretQueen()">Convertir en dame</button>
     </div>
     <div id="promotion" class="secret-box" style="visibility: hidden;">
-        <button onclick="promote('q')">♕ Reine</button>
-        <button onclick="promote('r')">♖ Tour</button>
-        <button onclick="promote('b')">♗ Fou</button>
-        <button onclick="promote('n')">♘ Cavalier</button>
+        <button onclick="promote('b','q')">♕ Reine</button>
+        <button onclick="promote('b','r')">♖ Tour</button>
+        <button onclick="promote('b','b')">♗ Fou</button>
+        <button onclick="promote('b','n')">♘ Cavalier</button>
     </div>
     <script src="../P2PManagement/join.js"></script>
     <script src="../Common_Js/chess.js"></script>
