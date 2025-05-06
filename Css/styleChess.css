@@ -29,8 +29,8 @@
 
 /* Style pour l'image sélectionnée */
 .selected {
-    border: 5px solid #f39c12;
-    box-shadow: 0 0 10px #f39c12;
+    border: 5px solid #1a7c21;
+    box-shadow: 0 0 10px #1a7c21;
     transform: scale(1.1);
 }
 
