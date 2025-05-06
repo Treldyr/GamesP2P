@@ -49,16 +49,23 @@ function tryMoveTo(case_id){
 
 function treatNewMessage(msg){
     let typeMsg = msg.split('-')[0]
-    let pieceId = msg.split('-')[1]
-    let caseId = msg.split('-')[2]
     if(typeMsg=="move"){
+        let pieceId = msg.split('-')[1]
+        let caseId = msg.split('-')[2]
         whitePieceMoveTo(pieceId,caseId)
     }
     if(typeMsg=="promote"){
+        let pieceId = msg.split('-')[1]
+        let caseId = msg.split('-')[2]
         let newId = msg.split('-')[3]
         whitePieceMoveTo(pieceId,caseId)
         updateIdPiece(pieceId, newId[0], newId[1])
         selectedPiece = null
+    }
+    if(typeMsg=="castle"){
+        let color = msg.split('-')[1]
+        let isShort = msg.split('-')[2] === 'true'
+        toCastle(color, isShort)
     }
     console.log(msg)
 }

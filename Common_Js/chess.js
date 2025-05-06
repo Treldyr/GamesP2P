@@ -5,6 +5,8 @@ var white_wait = false;
 var black_wait = false;
 var id_new_piece = 9; // Si la prochaine nouvelle piece a l'ID 9, elle sera unique
 var selectedPromotionCase; // used only for promotion
+var canShortCastle = true;
+var canLongCastle = true;
 
 
 
@@ -125,6 +127,74 @@ function showPromotionMenu(to){
     document.getElementById("promotion").style.visibility = "visible";
 }
 
+function endTurnCastle(color, isShort){
+    // envoie le message à l'autre joueur
+    msgToSend = "castle-"+color+"-"+isShort
+    console.log("i am sending ",msgToSend)
+    sendMessage(msgToSend)
+
+    // déselectionne la pièce
+    selectedPiece = null
+}
+
+function toCastle(color, isShort){
+    playSound("castle")
+    if(color=='w'){
+        if(isShort){
+            console.log("short castle ")
+            // déplace le roi
+            let king = document.getElementById('wk')
+            king.className = ''
+            king.classList.add('piece_white', 'g1');
+
+            // déplace la tour
+            let rook = document.getElementById('wr2')
+            rook.className = ''
+            rook.classList.add('piece_white', 'f1');
+        } else {
+            console.log("long castle ")
+            // déplace le roi
+            let king = document.getElementById('wk')
+            king.className = ''
+            king.classList.add('piece_white', 'c1');
+
+            // déplace la tour
+            let rook = document.getElementById('wr1')
+            rook.className = ''
+            rook.classList.add('piece_white', 'd1');
+        }
+        // donne le tour aux noirs
+        white_turn = false;
+    } 
+    else if(color=='b'){
+        if(isShort){
+            console.log("short castle ")
+            // déplace le roi
+            let king = document.getElementById('bk')
+            king.className = ''
+            king.classList.add('piece_black', 'g8');
+
+            // déplace la tour
+            let rook = document.getElementById('br2')
+            rook.className = ''
+            rook.classList.add('piece_black', 'f8');
+        } else {
+            console.log("long castle ")
+            // déplace le roi
+            let king = document.getElementById('bk')
+            king.className = ''
+            king.classList.add('piece_black', 'c8');
+
+            // déplace la tour
+            let rook = document.getElementById('br1')
+            rook.className = ''
+            rook.classList.add('piece_black', 'd8');
+        }
+        // donne le tour aux blancs
+        white_turn = true;
+    }
+}
+
 
 
 function isCaseEmpty(case_id) {
@@ -166,6 +236,11 @@ function isLegalMove(type, isWhite, from, to) {
             x += stepX;
             y += stepY;
         }
+        if((selectedPiece=='br2')||(selectedPiece=='wr2')){
+            canShortCastle = false
+        } else if((selectedPiece=='br1')||(selectedPiece=='wr1')){
+            canLongCastle = false
+        }
         return true;
     }
 
@@ -193,7 +268,38 @@ function isLegalMove(type, isWhite, from, to) {
             return false;
 
         case 'k': // king
-            return Math.abs(dx) <= 1 && Math.abs(dy) <= 1;
+
+            // Tentative de roque
+            if (isWhite) {
+                if (to === 'g1' && canShortCastle && isCaseEmpty('f1') && isCaseEmpty('g1')) {
+                    toCastle('w', true);
+                    endTurnCastle('w', true);
+                    return false;
+                } else if (to === 'c1' && canLongCastle && isCaseEmpty('d1') && isCaseEmpty('c1') && isCaseEmpty('b1')) {
+                    toCastle('w', false);
+                    endTurnCastle('w', false);
+                    return false;
+                }
+            }
+            if (!isWhite) {
+                if (to === 'g8' && canShortCastle && isCaseEmpty('f8') && isCaseEmpty('g8')) {
+                    toCastle('b', true);
+                    endTurnCastle('b', true);
+                    return false;
+                } else if (to === 'c8' && canLongCastle && isCaseEmpty('d8') && isCaseEmpty('c8') && isCaseEmpty('b8')) {
+                    toCastle('b', false);
+                    endTurnCastle('b', false);
+                    return false;
+                }
+            }
+
+            const canKingMove = Math.abs(dx) <= 1 && Math.abs(dy) <= 1
+            if(canKingMove){
+                canShortCastle = false;
+                canLongCastle = false;
+            }
+            // Déplacement normal du roi
+            return canKingMove;
 
         case 'p': {
             const direction = isWhite ? 1 : -1;
