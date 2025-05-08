@@ -14,6 +14,7 @@ function chooseAsSecretQueen(){
         document.getElementById('secretQueenSelector').style.visibility = "hidden"
         secret_queen = selectedPiece
         document.getElementById(selectedPiece).src = "../images/bq.png"
+        playSound("castle")
     }
 }
 

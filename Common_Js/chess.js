@@ -66,6 +66,7 @@ function removeBlackPieceOnCase(case_id) {
     pieces.forEach(piece => {
         if (piece.classList[1] === case_id) {
             piece.remove(); // Supprime l'élément du DOM
+            playSound("take")
             if(piece.id=="bk"){
                 showVictoryMessage("blancs")
             }
