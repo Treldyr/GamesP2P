@@ -67,7 +67,7 @@ function removeBlackPieceOnCase(case_id) {
         if (piece.classList[1] === case_id) {
             piece.remove(); // Supprime l'élément du DOM
             playSound("take")
-            if(piece.id=="bk"){
+            if(((piece.id=="bk")||(piece.id=="bk1"))){
                 showVictoryMessage("blancs")
             }
             if (piece.classList.contains('selected')) {
@@ -83,7 +83,7 @@ function removeWhitePieceOnCase(case_id) {
         if (piece.classList[1] === case_id) {
             piece.remove(); // Supprime l'élément du DOM
             playSound("take")
-            if(piece.id=="wk"){
+            if(((piece.id=="wk")||(piece.id=="wk1"))){
                 showVictoryMessage("noirs")
             }
             if (piece.classList.contains('selected')) {
