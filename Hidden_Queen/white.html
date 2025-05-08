@@ -56,43 +56,45 @@
             </script>
         </div>
         
-        <!-- Pièces noires (rangées 8 et 7) -->
-        <img id="br1" src="../images/br.png" class="piece_black a8" onclick="FirstTryMove(this.classList[1])">
-        <img id="bn1" src="../images/bn.png" class="piece_black b8" onclick="FirstTryMove(this.classList[1])">
-        <img id="bb1" src="../images/bb.png" class="piece_black c8" onclick="FirstTryMove(this.classList[1])">
-        <img id="bq"  src="../images/bq.png" class="piece_black d8" onclick="FirstTryMove(this.classList[1])">
-        <img id="bk"  src="../images/bk.png" class="piece_black e8" onclick="FirstTryMove(this.classList[1])">
-        <img id="bb2" src="../images/bb.png" class="piece_black f8" onclick="FirstTryMove(this.classList[1])">
-        <img id="bn2" src="../images/bn.png" class="piece_black g8" onclick="FirstTryMove(this.classList[1])">
-        <img id="br2" src="../images/br.png" class="piece_black h8" onclick="FirstTryMove(this.classList[1])">
-        
-        <img id="bp1" src="../images/bp.png" class="piece_black a7" onclick="FirstTryMove(this.classList[1])">
-        <img id="bp2" src="../images/bp.png" class="piece_black b7" onclick="FirstTryMove(this.classList[1])">
-        <img id="bp3" src="../images/bp.png" class="piece_black c7" onclick="FirstTryMove(this.classList[1])">
-        <img id="bp4" src="../images/bp.png" class="piece_black d7" onclick="FirstTryMove(this.classList[1])">
-        <img id="bp5" src="../images/bp.png" class="piece_black e7" onclick="FirstTryMove(this.classList[1])">
-        <img id="bp6" src="../images/bp.png" class="piece_black f7" onclick="FirstTryMove(this.classList[1])">
-        <img id="bp7" src="../images/bp.png" class="piece_black g7" onclick="FirstTryMove(this.classList[1])">
-        <img id="bp8" src="../images/bp.png" class="piece_black h7" onclick="FirstTryMove(this.classList[1])">
-        
-        <!-- Pièces blanches (rangées 1 et 2) -->
-        <img id="wr1" src="../images/wr.png" class="piece_white a1" onclick="handleClickSecretQueen(this.id)">
-        <img id="wn1" src="../images/wn.png" class="piece_white b1" onclick="handleClickSecretQueen(this.id)">
-        <img id="wb1" src="../images/wb.png" class="piece_white c1" onclick="handleClickSecretQueen(this.id)">
-        <img id="wq"  src="../images/wq.png" class="piece_white d1" onclick="handleClickSecretQueen(this.id)">
-        <img id="wk"  src="../images/wk.png" class="piece_white e1" onclick="handleClickSecretQueen(this.id)">
-        <img id="wb2" src="../images/wb.png" class="piece_white f1" onclick="handleClickSecretQueen(this.id)">
-        <img id="wn2" src="../images/wn.png" class="piece_white g1" onclick="handleClickSecretQueen(this.id)">
-        <img id="wr2" src="../images/wr.png" class="piece_white h1" onclick="handleClickSecretQueen(this.id)">
-        
-        <img id="wp1" src="../images/wp.png" class="piece_white a2" onclick="handleClickSecretQueen(this.id)">
-        <img id="wp2" src="../images/wp.png" class="piece_white b2" onclick="handleClickSecretQueen(this.id)">
-        <img id="wp3" src="../images/wp.png" class="piece_white c2" onclick="handleClickSecretQueen(this.id)">
-        <img id="wp4" src="../images/wp.png" class="piece_white d2" onclick="handleClickSecretQueen(this.id)">
-        <img id="wp5" src="../images/wp.png" class="piece_white e2" onclick="handleClickSecretQueen(this.id)">
-        <img id="wp6" src="../images/wp.png" class="piece_white f2" onclick="handleClickSecretQueen(this.id)">
-        <img id="wp7" src="../images/wp.png" class="piece_white g2" onclick="handleClickSecretQueen(this.id)">
-        <img id="wp8" src="../images/wp.png" class="piece_white h2" onclick="handleClickSecretQueen(this.id)">
+        <div id="pieces_container">
+            <!-- Pièces noires (rangées 8 et 7) -->
+            <img id="br1" src="../images/br.png" class="piece_black a8" onclick="FirstTryMove(this.classList[1])">
+            <img id="bn1" src="../images/bn.png" class="piece_black b8" onclick="FirstTryMove(this.classList[1])">
+            <img id="bb1" src="../images/bb.png" class="piece_black c8" onclick="FirstTryMove(this.classList[1])">
+            <img id="bq"  src="../images/bq.png" class="piece_black d8" onclick="FirstTryMove(this.classList[1])">
+            <img id="bk"  src="../images/bk.png" class="piece_black e8" onclick="FirstTryMove(this.classList[1])">
+            <img id="bb2" src="../images/bb.png" class="piece_black f8" onclick="FirstTryMove(this.classList[1])">
+            <img id="bn2" src="../images/bn.png" class="piece_black g8" onclick="FirstTryMove(this.classList[1])">
+            <img id="br2" src="../images/br.png" class="piece_black h8" onclick="FirstTryMove(this.classList[1])">
+            
+            <img id="bp1" src="../images/bp.png" class="piece_black a7" onclick="FirstTryMove(this.classList[1])">
+            <img id="bp2" src="../images/bp.png" class="piece_black b7" onclick="FirstTryMove(this.classList[1])">
+            <img id="bp3" src="../images/bp.png" class="piece_black c7" onclick="FirstTryMove(this.classList[1])">
+            <img id="bp4" src="../images/bp.png" class="piece_black d7" onclick="FirstTryMove(this.classList[1])">
+            <img id="bp5" src="../images/bp.png" class="piece_black e7" onclick="FirstTryMove(this.classList[1])">
+            <img id="bp6" src="../images/bp.png" class="piece_black f7" onclick="FirstTryMove(this.classList[1])">
+            <img id="bp7" src="../images/bp.png" class="piece_black g7" onclick="FirstTryMove(this.classList[1])">
+            <img id="bp8" src="../images/bp.png" class="piece_black h7" onclick="FirstTryMove(this.classList[1])">
+            
+            <!-- Pièces blanches (rangées 1 et 2) -->
+            <img id="wr1" src="../images/wr.png" class="piece_white a1" onclick="handleClickSecretQueen(this.id)">
+            <img id="wn1" src="../images/wn.png" class="piece_white b1" onclick="handleClickSecretQueen(this.id)">
+            <img id="wb1" src="../images/wb.png" class="piece_white c1" onclick="handleClickSecretQueen(this.id)">
+            <img id="wq"  src="../images/wq.png" class="piece_white d1" onclick="handleClickSecretQueen(this.id)">
+            <img id="wk"  src="../images/wk.png" class="piece_white e1" onclick="handleClickSecretQueen(this.id)">
+            <img id="wb2" src="../images/wb.png" class="piece_white f1" onclick="handleClickSecretQueen(this.id)">
+            <img id="wn2" src="../images/wn.png" class="piece_white g1" onclick="handleClickSecretQueen(this.id)">
+            <img id="wr2" src="../images/wr.png" class="piece_white h1" onclick="handleClickSecretQueen(this.id)">
+            
+            <img id="wp1" src="../images/wp.png" class="piece_white a2" onclick="handleClickSecretQueen(this.id)">
+            <img id="wp2" src="../images/wp.png" class="piece_white b2" onclick="handleClickSecretQueen(this.id)">
+            <img id="wp3" src="../images/wp.png" class="piece_white c2" onclick="handleClickSecretQueen(this.id)">
+            <img id="wp4" src="../images/wp.png" class="piece_white d2" onclick="handleClickSecretQueen(this.id)">
+            <img id="wp5" src="../images/wp.png" class="piece_white e2" onclick="handleClickSecretQueen(this.id)">
+            <img id="wp6" src="../images/wp.png" class="piece_white f2" onclick="handleClickSecretQueen(this.id)">
+            <img id="wp7" src="../images/wp.png" class="piece_white g2" onclick="handleClickSecretQueen(this.id)">
+            <img id="wp8" src="../images/wp.png" class="piece_white h2" onclick="handleClickSecretQueen(this.id)">
+        </div>
     </div>
     <div id="secretQueenSelector" class="secret-box" style="visibility: hidden;">
         <button class="btn-start" onclick="chooseAsSecretQueen()">Convertir en dame</button>

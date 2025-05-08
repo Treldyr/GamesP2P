@@ -7,6 +7,8 @@ var id_new_piece = 9; // Si la prochaine nouvelle piece a l'ID 9, elle sera uniq
 var selectedPromotionCase; // used only for promotion
 var canShortCastle = true;
 var canLongCastle = true;
+var iWantRematch = false;
+var heWantsRematch = false;
 
 
 
@@ -104,10 +106,15 @@ function endTurn(case_id){
 
 function showVictoryMessage(winner) {
     const msg = document.createElement('div');
-    msg.innerText = `Victoire des ${winner} !`;
+    msg.id = 'victory-message';
     msg.className = 'secret-box';
+    msg.innerHTML = `
+        <p>Victoire des ${winner} !</p>
+        <button id="ask_rematch_button" class="btn-start" onclick="askReset()">Rejouter</button>
+        <p id="rematch_waiting"></p>
+    `;
     document.body.appendChild(msg);
-    playSound("checkmate")
+    playSound("checkmate");
 }
 
 
@@ -338,5 +345,54 @@ function isLegalMove(type, isWhite, from, to) {
 
         default:
             return false;
+    }
+}
+
+function clearPieces() {
+    document.querySelectorAll(".piece_black, .piece_white").forEach(piece => piece.remove());
+}
+
+function resetBoard(){
+    // suppression du message de victoire
+    document.getElementById("victory-message").remove();
+    
+    // suppression des pièces restantes sur le plateau
+    clearPieces()
+
+    playSound("intro")
+
+    // reset all the parameters
+    selectedPiece = null;
+    secret_queen = null;
+    white_turn = true;
+    white_wait = false;
+    black_wait = false;
+    id_new_piece = 9;
+    selectedPromotionCase;
+    canShortCastle = true;
+    canLongCastle = true;
+    iWantRematch = false;
+    heWantsRematch = false;
+
+    setupPieces()
+}
+
+function askReset(){
+    iWantRematch = true;
+    sendMessage("rematch")
+
+    // Mise à jour du message de l'utilisateur
+    document.getElementById("ask_rematch_button").remove();
+    document.getElementById("rematch_waiting").innerText = "En attente de l'adversaire...";
+
+    if((iWantRematch)&&(heWantsRematch)){
+        resetBoard()
+    }
+}
+
+function getResetRequest(){
+    heWantsRematch = true
+    if((iWantRematch)&&(heWantsRematch)){
+        resetBoard()
     }
 }

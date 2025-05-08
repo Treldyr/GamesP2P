@@ -18,6 +18,7 @@ function tryMoveTo(case_id){
 }
 
 function treatNewMessage(msg){
+    console.log(msg)
     let typeMsg = msg.split('-')[0]
     if(typeMsg=="move"){
         let pieceId = msg.split('-')[1]
@@ -37,7 +38,9 @@ function treatNewMessage(msg){
         let isShort = msg.split('-')[2] === 'true'
         toCastle(color, isShort)
     }
-    console.log(msg)
+    if(typeMsg=="rematch"){
+        getResetRequest()
+    }
 }
 
 function promote(color, piece) {
@@ -52,4 +55,39 @@ function promote(color, piece) {
     // envoie le message à l'autre joueur
     msgToSend = "promote-"+oldId+"-"+selectedPromotionCase+"-"+newId
     sendMessage(msgToSend)
+}
+
+
+function setupPieces() {
+    const container = document.getElementById("pieces_container");
+    const pieces = [];
+
+    // Pièces noires (rangée 8)
+    const blackPiecesRow = ["r", "n", "b", "q", "k", "b", "n", "r"];
+    const cols = ["a", "b", "c", "d", "e", "f", "g", "h"];
+    blackPiecesRow.forEach((type, i) => {
+        const id = `b${type}${type === "k" || type === "q" ? "" : (type === "b" && i > 4) || (type === "n" && i > 5) || (type === "r" && i > 6) ? "2" : "1"}`;
+        const className = `piece_black ${cols[i]}8`;
+        pieces.push(`<img id="${id}" src="../images/b${type}.png" class="${className}" onclick="handleClick(this.id)">`);
+    });
+
+    // Pions noirs (rangée 7)
+    cols.forEach((col, i) => {
+        pieces.push(`<img id="bp${i + 1}" src="../images/bp.png" class="piece_black ${col}7" onclick="handleClick(this.id)">`);
+    });
+
+    // Pièces blanches (rangée 1)
+    const whitePiecesRow = ["r", "n", "b", "q", "k", "b", "n", "r"];
+    whitePiecesRow.forEach((type, i) => {
+        const id = `w${type}${type === "k" || type === "q" ? "" : (type === "b" && i > 4) || (type === "n" && i > 5) || (type === "r" && i > 6) ? "2" : "1"}`;
+        const className = `piece_white ${cols[i]}1`;
+        pieces.push(`<img id="${id}" src="../images/wp.png" class="${className}" onclick="tryMoveTo(this.classList[1])">`);
+    });
+
+    // Pions blancs (rangée 2)
+    cols.forEach((col, i) => {
+        pieces.push(`<img id="wp${i + 1}" src="../images/wp.png" class="piece_white ${col}2" onclick="tryMoveTo(this.classList[1])">`);
+    });
+
+    container.innerHTML = pieces.join("\n");
 }
