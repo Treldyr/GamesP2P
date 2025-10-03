@@ -136,6 +136,7 @@ function updateRandomAuto(){
 }
 
 function generateRandom() {
+    playSound("transition")
     function shufflePieces(colorClass) {
         let pieces = Array.from(document.querySelectorAll(colorClass));
 
@@ -185,6 +186,7 @@ function generateRandom() {
 }
 
 function getRandomize(msg){
+    playSound("transition")
     let payload = msg.split("-")[1]; // ex : "bp1:a7|bp2:h6|wk:f3"
     let moves = payload.split("|");
 
