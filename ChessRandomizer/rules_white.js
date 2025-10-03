@@ -105,19 +105,8 @@ function setupPieces() {
         pieces.push(`<img id="${id}" src="../images/wp.png" class="${className}" onclick="handleClick(this.id)">`);
     });
 
-
-    // --- Bouton ---
-    let btn = document.createElement("button");
-    btn.className = "btnRandom";
-    btn.setAttribute("onclick", "launchRandom()");
-    btn.innerHTML = `Mélanger les pièces : <a id="nbRandom">3</a>`;
-    pieces.push(btn)
-
-    // --- Texte ---
-    let p = document.createElement("p");
-    p.className = "txtRandom";
-    p.innerHTML = `Mélange automatique dans <a id="randomAuto">11</a> coups.`;
-    pieces.push(p)
+    pieces.push(`<button class="btnRandom" onclick="launchRandom()">Mélanger les pièces : <a id="nbRandom">3</a></button>`);
+    pieces.push(`<p class="txtRandom">Mélange automatique dans <a id="randomAuto">11</a> coups.</p>`);
 
     container.innerHTML = pieces.join("\n");
     
