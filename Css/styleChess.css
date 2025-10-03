@@ -108,3 +108,7 @@
 .f1 { left: 70vmin; top: 82vmin; }
 .g1 { left: 81vmin; top: 82vmin; }
 .h1 { left: 92vmin; top: 82vmin; }
+
+
+.btnRandom { left: 110vmin; top: 30vmin; position: fixed; }
+.txtRandom { left: 110vmin; top: 40vmin; position: fixed; color: white }

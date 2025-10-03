@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Échecs normaux</title>
+    <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href="../Css/styleChess.css">
+    <link rel="icon" href="../images/wq.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+    <div class="background-image"></div>
+    <div id="peerConnexionJoin" class="content">
+        <h1 class="custom-title">Crée une connexion (Hôte)</h1>
+
+        <h3>À envoyer au joueur invité (copie ce texte) :</h3>
+        <textarea id="output" readonly rows="10" cols="80"></textarea>
+        <br>
+        <button onclick="copyToClipboard()">Copier dans le presse-papiers</button>
+        <br><br><br>
+        <h3>Colle ici la réponse de l'invité :</h3>
+        <textarea id="signal" placeholder="Colle ici la réponse" rows="10" cols="80"></textarea><br>
+        <button onclick="handleSignal()">Traiter</button>
+        <button class="btn-start" onclick="resetConnection()">Reset la connection</button>
+    </div>
+    <div id="chess_content" style="visibility: hidden;">
+        <div id="board">
+            <!-- Génération des 64 cases -->
+            <script>
+                const colors = ["yellow", "green"];
+                let colorIndex = 0; // Commencer par "yellow"
+            
+                for (let row = 8; row >= 1; row--) {
+                    for (let col = 0; col < 8; col++) {
+                        const file = String.fromCharCode(97 + col); // "a", "b", "c", ...
+                        const rank = row; // 8, 7, 6, ...
+                
+                        // Calculer la classe de position pour chaque case
+                        const caseId = `${file}${rank}`;
+                        
+                        // Alternance des couleurs (jaune et vert)
+                        const color = colors[colorIndex % 2];
+                
+                        // Générer l'élément pour chaque case
+                        document.write(`
+                        <img id="c${caseId}" src="../images/${color}.png" class="piece ${caseId}" onclick="tryMoveTo('${caseId}')">
+                        `);
+                
+                        // Alterner la couleur pour la prochaine case
+                        colorIndex++;
+                    }
+                    colorIndex++;
+                }
+            </script>
+        </div>
+        
+        <div id="pieces_container">
+            <!-- Pièces noires (rangées 8 et 7) -->
+            <img id="br1" src="../images/br.png" class="piece_black a8" onclick="tryMoveTo(this.classList[1])">
+            <img id="bn1" src="../images/bn.png" class="piece_black b8" onclick="tryMoveTo(this.classList[1])">
+            <img id="bb1" src="../images/bb.png" class="piece_black c8" onclick="tryMoveTo(this.classList[1])">
+            <img id="bq"  src="../images/bq.png" class="piece_black d8" onclick="tryMoveTo(this.classList[1])">
+            <img id="bk"  src="../images/bk.png" class="piece_black e8" onclick="tryMoveTo(this.classList[1])">
+            <img id="bb2" src="../images/bb.png" class="piece_black f8" onclick="tryMoveTo(this.classList[1])">
+            <img id="bn2" src="../images/bn.png" class="piece_black g8" onclick="tryMoveTo(this.classList[1])">
+            <img id="br2" src="../images/br.png" class="piece_black h8" onclick="tryMoveTo(this.classList[1])">
+            
+            <img id="bp1" src="../images/bp.png" class="piece_black a7" onclick="tryMoveTo(this.classList[1])">
+            <img id="bp2" src="../images/bp.png" class="piece_black b7" onclick="tryMoveTo(this.classList[1])">
+            <img id="bp3" src="../images/bp.png" class="piece_black c7" onclick="tryMoveTo(this.classList[1])">
+            <img id="bp4" src="../images/bp.png" class="piece_black d7" onclick="tryMoveTo(this.classList[1])">
+            <img id="bp5" src="../images/bp.png" class="piece_black e7" onclick="tryMoveTo(this.classList[1])">
+            <img id="bp6" src="../images/bp.png" class="piece_black f7" onclick="tryMoveTo(this.classList[1])">
+            <img id="bp7" src="../images/bp.png" class="piece_black g7" onclick="tryMoveTo(this.classList[1])">
+            <img id="bp8" src="../images/bp.png" class="piece_black h7" onclick="tryMoveTo(this.classList[1])">
+            
+            <!-- Pièces blanches (rangées 1 et 2) -->
+            <img id="wr1" src="../images/wr.png" class="piece_white a1" onclick="handleClick(this.id)">
+            <img id="wn1" src="../images/wn.png" class="piece_white b1" onclick="handleClick(this.id)">
+            <img id="wb1" src="../images/wb.png" class="piece_white c1" onclick="handleClick(this.id)">
+            <img id="wq"  src="../images/wq.png" class="piece_white d1" onclick="handleClick(this.id)">
+            <img id="wk"  src="../images/wk.png" class="piece_white e1" onclick="handleClick(this.id)">
+            <img id="wb2" src="../images/wb.png" class="piece_white f1" onclick="handleClick(this.id)">
+            <img id="wn2" src="../images/wn.png" class="piece_white g1" onclick="handleClick(this.id)">
+            <img id="wr2" src="../images/wr.png" class="piece_white h1" onclick="handleClick(this.id)">
+            
+            <img id="wp1" src="../images/wp.png" class="piece_white a2" onclick="handleClick(this.id)">
+            <img id="wp2" src="../images/wp.png" class="piece_white b2" onclick="handleClick(this.id)">
+            <img id="wp3" src="../images/wp.png" class="piece_white c2" onclick="handleClick(this.id)">
+            <img id="wp4" src="../images/wp.png" class="piece_white d2" onclick="handleClick(this.id)">
+            <img id="wp5" src="../images/wp.png" class="piece_white e2" onclick="handleClick(this.id)">
+            <img id="wp6" src="../images/wp.png" class="piece_white f2" onclick="handleClick(this.id)">
+            <img id="wp7" src="../images/wp.png" class="piece_white g2" onclick="handleClick(this.id)">
+            <img id="wp8" src="../images/wp.png" class="piece_white h2" onclick="handleClick(this.id)">
+            
+            <button class="btnRandom" onclick="launchRandom()">Mélanger les pièces : <a id="nbRandom">3</a></button>
+            <p class="txtRandom">Mélange automatique dans <a id="randomAuto">9</a> coups.</p>
+        </div>
+    </div>
+    
+    <div id="promotion" class="secret-box" style="visibility: hidden;">
+        <button onclick="promote('w','q')">♕ Reine</button>
+        <button onclick="promote('w','r')">♖ Tour</button>
+        <button onclick="promote('w','b')">♗ Fou</button>
+        <button onclick="promote('w','n')">♘ Cavalier</button>
+    </div>
+    <script src="../P2PManagement/host.js"></script>
+    <script src="../Common_Js/chess.js"></script>
+    <script src="rules_white.js"></script>
+</body>
+</html>
