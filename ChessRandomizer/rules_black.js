@@ -115,19 +115,19 @@ function setupPieces() {
     // --- Texte ---
     let p = document.createElement("p");
     p.className = "txtRandom";
-    p.innerHTML = `Mélange automatique dans <a id="randomAuto">9</a> coups.`;
+    p.innerHTML = `Mélange automatique dans <a id="randomAuto">11</a> coups.`;
     pieces.push(p)
 
     container.innerHTML = pieces.join("\n");
 
     blackrandom = 3
-    nextMoveRandom = 9
+    nextMoveRandom = 11
 }
 
 // Logique des mélanges :
 
 var blackrandom = 3
-var nextMoveRandom = 9
+var nextMoveRandom = 11
 
 function launchRandom(){
     if(blackrandom>0){
@@ -140,7 +140,7 @@ function launchRandom(){
 function updateRandomAuto(){
     nextMoveRandom = nextMoveRandom-1
     if(nextMoveRandom == 0){
-        nextMoveRandom = 9
+        nextMoveRandom = 11
     }
     document.getElementById("randomAuto").innerHTML = nextMoveRandom
 }

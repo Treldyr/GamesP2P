@@ -7,8 +7,8 @@ function tryMoveTo(case_id){
 
             if (isLegalMove(pieceType, true, piece_case, case_id)) {
                 whitePieceMoveTo(selectedPiece, case_id);
-                updateRandomAuto()
                 endTurn(case_id);
+                updateRandomAuto()
             } else {
                 console.log("Coup illégal !");
             }
@@ -116,20 +116,20 @@ function setupPieces() {
     // --- Texte ---
     let p = document.createElement("p");
     p.className = "txtRandom";
-    p.innerHTML = `Mélange automatique dans <a id="randomAuto">9</a> coups.`;
+    p.innerHTML = `Mélange automatique dans <a id="randomAuto">11</a> coups.`;
     pieces.push(p)
 
     container.innerHTML = pieces.join("\n");
     
     whiterandom = 3
-    nextMoveRandom = 9
+    nextMoveRandom = 11
 }
 
 
 // Logique des mélanges :
 
 var whiterandom = 3
-var nextMoveRandom = 9
+var nextMoveRandom = 11
 
 function launchRandom(){
     if(whiterandom>0){
@@ -142,7 +142,7 @@ function launchRandom(){
 function updateRandomAuto(){
     nextMoveRandom = nextMoveRandom-1
     if(nextMoveRandom == 0){
-        nextMoveRandom = 9
+        nextMoveRandom = 11
         generateRandom()
     }
     document.getElementById("randomAuto").innerHTML = nextMoveRandom
