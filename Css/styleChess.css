@@ -111,4 +111,92 @@
 
 
 .btnRandom { left: 110vmin; top: 30vmin; position: fixed; }
-.txtRandom { left: 110vmin; top: 40vmin; position: fixed; color: white }
+.txtRandom { left: 110vmin; top: 40vmin; position: fixed; color: black }
+
+/* Position pour les téléphones */
+
+@media (max-width: 768px) {
+  .a8 { left: 5vmin; top: 0vmin; }
+  .b8 { left: 16vmin; top: 0vmin; }
+  .c8 { left: 27vmin; top: 0vmin; }
+  .d8 { left: 38vmin; top: 0vmin; }
+  .e8 { left: 49vmin; top: 0vmin; }
+  .f8 { left: 60vmin; top: 0vmin; }
+  .g8 { left: 71vmin; top: 0vmin; }
+  .h8 { left: 82vmin; top: 0vmin; }
+
+  .a7 { left: 5vmin; top: 11vmin; }
+  .b7 { left: 16vmin; top: 11vmin; }
+  .c7 { left: 27vmin; top: 11vmin; }
+  .d7 { left: 38vmin; top: 11vmin; }
+  .e7 { left: 49vmin; top: 11vmin; }
+  .f7 { left: 60vmin; top: 11vmin; }
+  .g7 { left: 71vmin; top: 11vmin; }
+  .h7 { left: 82vmin; top: 11vmin; }
+
+  .a6 { left: 5vmin; top: 22vmin; }
+  .b6 { left: 16vmin; top: 22vmin; }
+  .c6 { left: 27vmin; top: 22vmin; }
+  .d6 { left: 38vmin; top: 22vmin; }
+  .e6 { left: 49vmin; top: 22vmin; }
+  .f6 { left: 60vmin; top: 22vmin; }
+  .g6 { left: 71vmin; top: 22vmin; }
+  .h6 { left: 82vmin; top: 22vmin; }
+
+  .a5 { left: 5vmin; top: 33vmin; }
+  .b5 { left: 16vmin; top: 33vmin; }
+  .c5 { left: 27vmin; top: 33vmin; }
+  .d5 { left: 38vmin; top: 33vmin; }
+  .e5 { left: 49vmin; top: 33vmin; }
+  .f5 { left: 60vmin; top: 33vmin; }
+  .g5 { left: 71vmin; top: 33vmin; }
+  .h5 { left: 82vmin; top: 33vmin; }
+
+  .a4 { left: 5vmin; top: 44vmin; }
+  .b4 { left: 16vmin; top: 44vmin; }
+  .c4 { left: 27vmin; top: 44vmin; }
+  .d4 { left: 38vmin; top: 44vmin; }
+  .e4 { left: 49vmin; top: 44vmin; }
+  .f4 { left: 60vmin; top: 44vmin; }
+  .g4 { left: 71vmin; top: 44vmin; }
+  .h4 { left: 82vmin; top: 44vmin; }
+
+  .a3 { left: 5vmin; top: 55vmin; }
+  .b3 { left: 16vmin; top: 55vmin; }
+  .c3 { left: 27vmin; top: 55vmin; }
+  .d3 { left: 38vmin; top: 55vmin; }
+  .e3 { left: 49vmin; top: 55vmin; }
+  .f3 { left: 60vmin; top: 55vmin; }
+  .g3 { left: 71vmin; top: 55vmin; }
+  .h3 { left: 82vmin; top: 55vmin; }
+
+  .a2 { left: 5vmin; top: 66vmin; }
+  .b2 { left: 16vmin; top: 66vmin; }
+  .c2 { left: 27vmin; top: 66vmin; }
+  .d2 { left: 38vmin; top: 66vmin; }
+  .e2 { left: 49vmin; top: 66vmin; }
+  .f2 { left: 60vmin; top: 66vmin; }
+  .g2 { left: 71vmin; top: 66vmin; }
+  .h2 { left: 82vmin; top: 66vmin; }
+
+  .a1 { left: 5vmin; top: 77vmin; }
+  .b1 { left: 16vmin; top: 77vmin; }
+  .c1 { left: 27vmin; top: 77vmin; }
+  .d1 { left: 38vmin; top: 77vmin; }
+  .e1 { left: 49vmin; top: 77vmin; }
+  .f1 { left: 60vmin; top: 77vmin; }
+  .g1 { left: 71vmin; top: 77vmin; }
+  .h1 { left: 82vmin; top: 77vmin; }
+
+  .btnRandom {
+    left: 10vmin; top: 100vmin;
+  }
+  .txtRandom {
+    left: 10vmin; top: 110vmin;
+  }
+
+  .secret-box {
+    top: 25%;
+    left: 25%;
+    }
+}
