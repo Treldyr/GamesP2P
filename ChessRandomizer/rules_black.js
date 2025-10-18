@@ -95,7 +95,7 @@ function setupPieces() {
         const id = `${type}${suffix}`;
         const className = `piece_white ${cols[i]}1`;
         const imgFile = `${type}.png`;
-        pieces.push(`<img id="${id}" src="../images/${imgFile}" class="${className}" onclick="handleClick(this.classList[1])">`);
+        pieces.push(`<img id="${id}" src="../images/${imgFile}" class="${className}" onclick="tryMoveTo(this.classList[1])">`);
     });
 
     // Pions blancs (rangée 2 avec image de pion aussi)
