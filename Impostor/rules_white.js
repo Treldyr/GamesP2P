@@ -268,7 +268,7 @@ function receiveReveal(traitor_piece){
         case "wp6":
         case "wp7":
         case "wp8":
-            document.getElementById(impostor_piece).src = "../images/bp.png"
+            document.getElementById(traitor_piece).src = "../images/bp.png"
         break
 
         default:
