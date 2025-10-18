@@ -236,7 +236,7 @@ function revealPawn(){
 
 function receiveReveal(traitor_piece){
     document.getElementById(traitor_piece).classList.replace("piece_white", "piece_black");
-    document.getElementById(traitor_piece).setAttribute("onclick", "tryMoveTo(this.classList[1]))");
+    document.getElementById(traitor_piece).setAttribute("onclick", "tryMoveTo(this.classList[1])");
     switch (traitor_piece) {
         case "wr1":
         case "wr2":
