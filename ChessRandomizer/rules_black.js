@@ -183,6 +183,7 @@ function generateRandom() {
 
     sendMessage("random-" + payload);
     selectedPiece = null;
+    document.getElementById("promotion").style.visibility = "hidden"
 }
 
 function getRandomize(msg){
@@ -205,4 +206,5 @@ function getRandomize(msg){
             piece.classList.add(caseId);
         }
     });
+    document.getElementById("promotion").style.visibility = "hidden"
 }

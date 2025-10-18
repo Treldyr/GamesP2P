@@ -208,4 +208,5 @@ function getRandomize(msg){
             piece.classList.add(caseId);
         }
     });
+    document.getElementById("promotion").style.visibility = "hidden"
 }
