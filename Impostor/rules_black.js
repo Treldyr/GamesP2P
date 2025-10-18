@@ -150,12 +150,14 @@ function tryMoveAndImpostorPawn(case_id, piece_id){
 }
 
 function convertPawn(){
+    playSound("transition")
     impostor_pawn_chosen = true
     document.getElementById(impostor_pawn).src = "../images/rp.png"
     document.getElementById('secretPawnSelector').style.visibility = "hidden"
 }
 
 function convertPiece() {
+    playSound("transition")
     impostor_piece_chosen = true
     document.getElementById('secretPieceSelector').style.visibility = "hidden"
 
@@ -192,6 +194,7 @@ function closeAskPawn(){
 }
 
 function revealPiece(){
+    playSound("transition")
     document.getElementById(impostor_piece).classList.replace("piece_white", "piece_black");
     document.getElementById(impostor_piece).setAttribute("onclick", "handleClick(this.id)");
     switch (impostor_piece) {

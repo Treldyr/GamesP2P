@@ -195,6 +195,7 @@ function closeAskPawn(){
 }
 
 function revealPiece(){
+    playSound("transition")
     document.getElementById(impostor_piece).classList.replace("piece_black", "piece_white");
     document.getElementById(impostor_piece).setAttribute("onclick", "handleClick(this.id)");
     switch (impostor_piece) {
@@ -225,6 +226,7 @@ function revealPiece(){
 }
 
 function revealPawn(){
+    playSound("transition")
     document.getElementById(impostor_pawn).classList.replace("piece_black", "piece_white");
     document.getElementById(impostor_pawn).setAttribute("onclick", "handleClick(this.id)");
     document.getElementById(impostor_pawn).src = "../images/wp.png"
@@ -235,6 +237,7 @@ function revealPawn(){
 }
 
 function receiveReveal(traitor_piece){
+    playSound("transition")
     document.getElementById(traitor_piece).classList.replace("piece_white", "piece_black");
     document.getElementById(traitor_piece).setAttribute("onclick", "tryMoveTo(this.classList[1])");
     switch (traitor_piece) {
