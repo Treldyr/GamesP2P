@@ -9,6 +9,7 @@ function tryMoveTo(case_id){
 
                     if (isLegalMove(pieceType, true, piece_case, case_id)) {
                         whitePieceMoveTo(selectedPiece, case_id);
+                        updateMoveEnableImpostor()
                         endTurn(case_id);
                     } else {
                         console.log("Coup illégal !");
@@ -32,6 +33,7 @@ function treatNewMessage(msg){
         let pieceId = msg.split('-')[1]
         let caseId = msg.split('-')[2]
         blackPieceMoveTo(pieceId,caseId)
+        updateMoveEnableImpostor()
     }
     if(typeMsg=="promote"){
         let pieceId = msg.split('-')[1]
@@ -40,11 +42,13 @@ function treatNewMessage(msg){
         blackPieceMoveTo(pieceId,caseId)
         updateIdPiece(pieceId, newId[0], newId[1])
         selectedPiece = null
+        updateMoveEnableImpostor()
     }
     if(typeMsg=="castle"){
         let color = msg.split('-')[1]
         let isShort = msg.split('-')[2] === 'true'
         toCastle(color, isShort)
+        updateMoveEnableImpostor()
     }
     if(typeMsg=="rematch"){
         getResetRequest()
@@ -108,20 +112,34 @@ function setupPieces() {
         pieces.push(`<img id="${id}" src="../images/wp.png" class="${className}" onclick="handleClick(this.id)">`);
     });
 
+    pieces.push(`<p class="txtRandom" id="impostorEnable">Révélation possible des imposteurs dans <a id="randomAuto">10</a> coups.</p>`);
+
     container.innerHTML = pieces.join("\n");
 
     impostor_pawn = null
     impostor_piece = null
     impostor_pawn_chosen = false
     impostor_piece_chosen = false
+    moveEnableImpostor = 10
 }
 
 // Impostor functions
 
-let impostor_pawn = null
-let impostor_piece = null
-let impostor_pawn_chosen = false
-let impostor_piece_chosen = false
+var impostor_pawn = null
+var impostor_piece = null
+var impostor_pawn_chosen = false
+var impostor_piece_chosen = false
+var moveEnableImpostor = 10
+
+function updateMoveEnableImpostor(){
+    if(moveEnableImpostor > 0){
+        moveEnableImpostor = moveEnableImpostor-1
+        document.getElementById("randomAuto").innerHTML = moveEnableImpostor
+    } else if (moveEnableImpostor==0){
+        document.getElementById("impostorEnable").style.visibility = "hidden"
+        
+    }
+}
 
 
 function tryMoveAndImpostorPiece(case_id, piece_id){
@@ -195,45 +213,53 @@ function closeAskPawn(){
 }
 
 function revealPiece(){
-    playSound("transition")
-    document.getElementById(impostor_piece).classList.replace("piece_black", "piece_white");
-    document.getElementById(impostor_piece).setAttribute("onclick", "handleClick(this.id)");
-    switch (impostor_piece) {
-        case "br1":
-        case "br2":
-            document.getElementById(impostor_piece).src = "../images/wr.png"
+    if(moveEnableImpostor <= 0){
+        playSound("transition")
+        document.getElementById(impostor_piece).classList.replace("piece_black", "piece_white");
+        document.getElementById(impostor_piece).setAttribute("onclick", "handleClick(this.id)");
+        switch (impostor_piece) {
+            case "br1":
+            case "br2":
+                document.getElementById(impostor_piece).src = "../images/wr.png"
+                break
+
+            case "bn1":
+            case "bn2":
+                document.getElementById(impostor_piece).src = "../images/wn.png"
             break
 
-        case "bn1":
-        case "bn2":
-            document.getElementById(impostor_piece).src = "../images/wn.png"
-        break
-
-        case "bb1":
-        case "bb2":
-            document.getElementById(impostor_piece).src = "../images/wb.png"
-        break
-        
-        case "bq":
-            document.getElementById(impostor_piece).src = "../images/wq.png"
+            case "bb1":
+            case "bb2":
+                document.getElementById(impostor_piece).src = "../images/wb.png"
             break
-        default:
-            console.warn("Type de pièce inconnu :", impostor_piece)
+            
+            case "bq":
+                document.getElementById(impostor_piece).src = "../images/wq.png"
+                break
+            default:
+                console.warn("Type de pièce inconnu :", impostor_piece)
+        }
+        msgToSend = "reveal-"+impostor_piece
+        sendMessage(msgToSend)
+        document.getElementById('askRevealPiece').style.visibility = "hidden"
+    } else {
+        alert("Il est trop tôt pour révéler les imposteurs !")
     }
-    msgToSend = "reveal-"+impostor_piece
-    sendMessage(msgToSend)
-    document.getElementById('askRevealPiece').style.visibility = "hidden"
 }
 
 function revealPawn(){
-    playSound("transition")
-    document.getElementById(impostor_pawn).classList.replace("piece_black", "piece_white");
-    document.getElementById(impostor_pawn).setAttribute("onclick", "handleClick(this.id)");
-    document.getElementById(impostor_pawn).src = "../images/wp.png"
+    if(moveEnableImpostor <= 0){
+        playSound("transition")
+        document.getElementById(impostor_pawn).classList.replace("piece_black", "piece_white");
+        document.getElementById(impostor_pawn).setAttribute("onclick", "handleClick(this.id)");
+        document.getElementById(impostor_pawn).src = "../images/wp.png"
 
-    msgToSend = "reveal-"+impostor_pawn
-    sendMessage(msgToSend)
-    document.getElementById('askRevealPawn').style.visibility = "hidden"
+        msgToSend = "reveal-"+impostor_pawn
+        sendMessage(msgToSend)
+        document.getElementById('askRevealPawn').style.visibility = "hidden"
+    } else {
+        alert("Il est trop tôt pour révéler les imposteurs !")
+    }
 }
 
 function receiveReveal(traitor_piece){
