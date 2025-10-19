@@ -78,7 +78,7 @@ function setupPieces() {
     const pieces = [];
     const cols = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
-    // Pièces noires (rangée 8 avec vraies images)
+    // Pièces noires
     const blackPieces = ["br", "bn", "bb", "bq", "bk", "bb", "bn", "br"];
     blackPieces.forEach((type, i) => {
         const suffix = (type === "bb" && i > 4) || (type === "bn" && i > 5) || (type === "br" && i > 6) ? "2" : "1";
@@ -88,21 +88,24 @@ function setupPieces() {
         pieces.push(`<img id="${id}" src="../images/${imgFile}" class="${className}" onclick="handleClick(this.id)">`);
     });
 
-    // Pions noirs (rangée 7)
+    // Pions noirs
     cols.forEach((col, i) => {
         const id = `bp${i + 1}`;
         const className = `piece_black ${col}7`;
         pieces.push(`<img id="${id}" src="../images/bp.png" class="${className}" onclick="handleClick(this.id)">`);
     });
 
-    // Pièces blanches (rangée 1 avec image de pion mais différentes classes et IDs)
-    const whiteIDs = ["wr1", "wn1", "wb1", "wq", "wk", "wb2", "wn2", "wr2"];
-    whiteIDs.forEach((id, i) => {
+    // Pièces blanches
+    const whitePieces = ["wr", "wn", "wb", "wq", "wk", "wb", "wn", "wr"];
+    whitePieces.forEach((type, i) => {
+        const suffix = (type === "wb" && i > 4) || (type === "wn" && i > 5) || (type === "wr" && i > 6) ? "2" : "1";
+        const id = `${type}${suffix}`;
         const className = `piece_white ${cols[i]}1`;
-        pieces.push(`<img id="${id}" src="../images/wp.png" class="${className}" onclick="tryMoveAndImpostorPiece(this.classList[1], this.id)">`);
+        const imgFile = `${type}.png`;
+        pieces.push(`<img id="${id}" src="../images/${imgFile}" class="${className}" onclick="tryMoveAndImpostorPiece(this.classList[1], this.id)">`);
     });
 
-    // Pions blancs (rangée 2 avec image de pion aussi)
+    // Pions blancs
     cols.forEach((col, i) => {
         const id = `wp${i + 1}`;
         const className = `piece_white ${col}2`;
