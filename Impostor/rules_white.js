@@ -85,7 +85,11 @@ function setupPieces() {
         const id = `${type}${suffix}`;
         const className = `piece_black ${cols[i]}8`;
         const imgFile = `${type}.png`;
-        pieces.push(`<img id="${id}" src="../images/${imgFile}" class="${className}" onclick="tryMoveAndImpostorPiece(this.classList[1], this.id)">`);
+        if(type=="bk"){
+            pieces.push(`<img id="${id}" src="../images/${imgFile}" class="${className}" onclick="tryMoveTo(this.classList[1])">`);
+        } else {
+            pieces.push(`<img id="${id}" src="../images/${imgFile}" class="${className}" onclick="tryMoveAndImpostorPiece(this.classList[1], this.id)">`);
+        }
     });
 
     // Pions noirs (rangée 7 – fausses)
